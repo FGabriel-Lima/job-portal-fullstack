@@ -85,7 +85,7 @@ export function useDashboardController() {
       console.error(error);
       toast.error('Erro ao excluir a vaga. Tente novamente.');
     } finally {
-      setJobToDelete(null); // Fecha o modal no final, dando erro ou sucesso
+      setJobToDelete(null);
     }
   }
 

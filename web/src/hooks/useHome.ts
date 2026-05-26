@@ -21,7 +21,6 @@ export function useHome() {
     async function fetchJobs() {
       setLoading(true);
       try {
-        // Traduzindo a escolha do Front para o Back
         let orderBy = 'createdAt';
         let orderDir = 'desc';
 

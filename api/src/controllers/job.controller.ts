@@ -30,7 +30,6 @@ export class JobController {
 
   async index(req: Request, res: Response) {
     try {
-      // Extraindo tudo que pode vir na URL (?title=Dev&page=2&limit=5&orderBy=title&orderDir=asc)
       const { title, department, location, page, limit, orderBy, orderDir } = req.query;
       
       const jobService = new JobService();

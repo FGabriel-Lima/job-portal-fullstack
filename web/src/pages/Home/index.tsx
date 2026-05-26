@@ -35,7 +35,6 @@ export function Home() {
 
           {/* BARRA DE PESQUISA */}
           <div className="absolute left-1/2 transform -translate-x-1/2 -bottom-16 w-full max-w-4xl px-6 z-20">
-            {/* items-stretch para o botão acompanhar a altura dos inputs */}
             <form onSubmit={handleSearch} className="bg-white rounded-xl shadow-lg p-4 flex flex-col md:flex-row items-stretch gap-4 border border-gray-200">
               
               <div className="flex-1 relative">

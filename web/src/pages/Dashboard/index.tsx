@@ -52,7 +52,7 @@ export function Dashboard() {
               <Menu size={24} />
             </button>
 
-            {/* BARRA DE PESQUISA FUNCIONAL */}
+            {/* BARRA DE PESQUISA */}
             <form onSubmit={handleSearch} className="relative hidden md:block w-full max-w-md">
               <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
               <input 
@@ -74,7 +74,6 @@ export function Dashboard() {
               <span className="hidden sm:block">Criar Vaga</span>
             </button>
             <div className="h-6 w-px bg-gray-200 mx-2"></div>
-            {/* Ícones de Bell e Settings removidos */}
             <div className="w-9 h-9 rounded-full bg-blue-100 border border-blue-200 flex items-center justify-center text-blue-900 font-bold uppercase">
               {admin?.name?.charAt(0) || 'A'}
             </div>
@@ -132,7 +131,7 @@ export function Dashboard() {
               </table>
             </div>
             
-            {/* PAGINAÇÃO INCLUÍDA NO RODAPÉ DA TABELA */}
+            {/* PAGINAÇÃO */}
             {!loading && totalPages > 1 && (
               <div className="p-4 border-t border-gray-200 bg-gray-50 flex justify-center items-center gap-4">
                 <button 
