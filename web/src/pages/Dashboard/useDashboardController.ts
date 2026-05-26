@@ -15,8 +15,6 @@ export function useDashboardController() {
   const [metrics, setMetrics] = useState({ total: 0, abertas: 0, encerradas: 0 });
   const [jobs, setJobs] = useState<Job[]>([]);
   const [loading, setLoading] = useState(true);
-
-  // Novos estados para Busca e Paginação
   const [searchTitle, setSearchTitle] = useState('');
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -49,11 +47,11 @@ export function useDashboardController() {
     }
 
     fetchDashboardData();
-  }, [refreshTrigger, page]); // Recarrega ao mudar de página ou disparar o trigger
+  }, [refreshTrigger, page]);
 
   function handleSearch(e: FormEvent) {
     e.preventDefault();
-    setPage(1); // Volta para a primeira página ao pesquisar
+    setPage(1);
     setRefreshTrigger(prev => prev + 1);
   }
 

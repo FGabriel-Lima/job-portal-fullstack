@@ -1,13 +1,10 @@
 import { Search, Building, MapPin } from 'lucide-react';
-
-// Importando nossos componentes e lógica isolada!
 import { PublicHeader } from '../../components/PublicHeader';
 import { PublicFooter } from '../../components/PublicFooter';
 import { JobCard } from '../../components/JobCard';
 import { useHome } from '../../hooks/useHome';
 
 export function Home() {
-  // Puxando o "cérebro" da tela
   const {
     searchTitle, setSearchTitle,
     searchDepartment, setSearchDepartment,

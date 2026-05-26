@@ -4,7 +4,6 @@ import { isAxiosError } from 'axios';
 import { api } from '../services/api';
 
 export function useRegister() {
-  // 1. Todos os estados ficam escondidos aqui
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -14,7 +13,6 @@ export function useRegister() {
 
   const navigate = useNavigate();
 
-  // 2. A função de negócio completa
   async function handleRegister(e: FormEvent) {
     e.preventDefault();
     setError('');
@@ -45,7 +43,6 @@ export function useRegister() {
     }
   }
 
-  // 3. Exportamos apenas o que a interface visual vai precisar "plugar"
   return {
     name, setName,
     email, setEmail,

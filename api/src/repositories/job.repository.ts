@@ -32,7 +32,7 @@ export class JobRepository {
         skip,
         take: limit,
         orderBy: {
-          [orderBy]: orderDir, // Ex: { createdAt: 'desc' } ou { title: 'asc' }
+          [orderBy]: orderDir,
         },
       }),
       prisma.job.count({ where: whereClause }), // Conta o total de vagas que batem com o filtro

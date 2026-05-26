@@ -25,7 +25,6 @@ export class JobService {
   }
 
   async executeCreate(data: CreateJobDTO) {
-    // Validações de negócio poderiam entrar aqui
     return this.jobRepository.create(data);
   }
 

@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import { ArrowLeft, MapPin, Building, Briefcase } from 'lucide-react';
-
 import { PublicHeader } from '../../components/PublicHeader';
 import { PublicFooter } from '../../components/PublicFooter';
 import { useJobDetails } from '../../hooks/useJobDetails';
@@ -16,8 +15,8 @@ export function JobDetails() {
     );
   }
 
-  if (!job) return null; // O hook já redireciona se não achar
-
+  if (!job) return null;
+  
   return (
     <div className="bg-gray-50 text-gray-900 antialiased min-h-screen flex flex-col font-sans">
       <PublicHeader />

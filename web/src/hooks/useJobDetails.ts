@@ -18,7 +18,7 @@ export function useJobDetails() {
       } catch (error) {
         console.error('Erro ao buscar detalhes da vaga:', error);
         alert('Vaga não encontrada!');
-        navigate('/'); // Volta para a home se a vaga não existir
+        navigate('/'); 
       } finally {
         setLoading(false);
       }

@@ -19,8 +19,6 @@ export const AuthMiddleware = (
     return;
   }
 
-  // O cabeçalho vem no padrão "Bearer <token_gigante_aqui>"
-  // Usamos a desestruturação de array para ignorar a palavra "Bearer" e pegar só o token
   const [, token] = authHeader.split(' ');
 
   try {

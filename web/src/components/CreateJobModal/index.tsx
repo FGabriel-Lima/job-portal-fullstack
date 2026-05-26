@@ -15,7 +15,6 @@ export function CreateJobModal({ onClose, onSuccess, jobToEdit }: CreateJobModal
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  // 1. Inicializamos o estado DIRETAMENTE com os dados da vaga (se existir) ou vazio!
   const [formData, setFormData] = useState({
     title: jobToEdit?.title || '',
     department: jobToEdit?.department || '',
@@ -30,8 +29,6 @@ export function CreateJobModal({ onClose, onSuccess, jobToEdit }: CreateJobModal
     process: jobToEdit?.process || ''
   });
 
-  // O useEffect FOI TOTALMENTE REMOVIDO DAQUI! 🎉
-
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
@@ -39,7 +36,7 @@ export function CreateJobModal({ onClose, onSuccess, jobToEdit }: CreateJobModal
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    setError(''); // Pode manter se você ainda tiver aquele texto de erro vermelho no formulário
+    setError('');
     setLoading(true);
 
     try {
@@ -55,7 +52,7 @@ export function CreateJobModal({ onClose, onSuccess, jobToEdit }: CreateJobModal
       onClose(); 
     } catch (err) {
       if (isAxiosError(err) && err.response?.data?.error) {
-        toast.error(err.response.data.error); // Mostra o erro exato que veio da API
+        toast.error(err.response.data.error); 
       } else {
         toast.error('Erro ao salvar a vaga. Tente novamente.');
       }

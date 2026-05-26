@@ -27,13 +27,10 @@ export function useDashboard() {
   const [jobs, setJobs] = useState<Job[]>([]);
   const [loading, setLoading] = useState(true);
   
-  // O nosso "gatilho" para recarregar a tela
   const [refreshTrigger, setRefreshTrigger] = useState(0);
 
   useEffect(() => {
-    // A função fica segura aqui dentro, e o linter fica feliz
     async function fetchDashboardData() {
-      // Se for um recarregamento manual (trigger > 0), ativamos o loading de novo
       if (refreshTrigger > 0) {
         setLoading(true);
       }
@@ -54,9 +51,8 @@ export function useDashboard() {
     }
 
     fetchDashboardData();
-  }, [refreshTrigger]); // Toda vez que o refreshTrigger mudar, o useEffect roda de novo!
+  }, [refreshTrigger]); 
 
-  // Função simples e síncrona que exportamos para o Modal usar
   function refreshData() {
     setRefreshTrigger(prev => prev + 1);
   }

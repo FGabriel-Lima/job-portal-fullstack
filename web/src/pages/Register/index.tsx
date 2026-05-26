@@ -2,12 +2,9 @@ import { Link } from 'react-router-dom';
 import logoImg from '../../assets/logo.png';
 import { Input } from '../../components/Input';
 import { Button } from '../../components/Button';
-
-// Importando a nossa lógica separada
 import { useRegister } from '../../hooks/useRegister';
 
 export function Register() {
-  // A tela simplesmente "puxa" as variáveis e funções prontas do Hook
   const {
     name, setName,
     email, setEmail,

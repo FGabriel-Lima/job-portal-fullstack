@@ -11,7 +11,7 @@ export function useHome() {
   // Paginação e Ordenação
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [sortBy, setSortBy] = useState('recentes'); // 'recentes' ou 'titulo'
+  const [sortBy, setSortBy] = useState('recentes');
 
   const [jobs, setJobs] = useState<Job[]>([]);
   const [loading, setLoading] = useState(true);
@@ -57,10 +57,9 @@ export function useHome() {
     fetchJobs();
   }, [trigger, page, sortBy]); // Recarrega sempre que mudar a página, a ordenação ou disparar o gatilho
 
-  // Função chamada ao clicar em "Buscar" no formulário
   function handleSearch(e?: FormEvent) {
     if (e) e.preventDefault();
-    setPage(1); // Sempre volta para a página 1 ao fazer uma nova pesquisa
+    setPage(1);
     setTrigger(prev => prev + 1);
   }
 
