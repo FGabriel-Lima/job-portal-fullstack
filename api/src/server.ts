@@ -3,6 +3,7 @@ import express from 'express';
 import cors from 'cors';
 import { setupSwagger } from './config/swagger.js';
 import { adminRoutes } from  './routes/admin.routes.js'
+import { jobRoutes} from './routes/job.routes.js'
 
 const app = express();
 
@@ -17,6 +18,7 @@ app.get('/health', (req, res) => {
 });
 
 app.use('/auth', adminRoutes);
+app.use("/jobs", jobRoutes);
 
 const PORT = process.env.PORT || 3333;
 

@@ -87,12 +87,6 @@ export function Login() {
               />
 
               <div className="relative">
-                {/* Link de esqueceu a senha posicionado sobre o Input */}
-                <div className="absolute right-0 top-0 z-10">
-                  <a className="text-sm text-orange-500 hover:text-orange-600 transition-colors duration-200 focus:outline-none focus:underline" href="#">
-                    Esqueceu a senha?
-                  </a>
-                </div>
                 
                 <Input 
                   label="Senha"
