@@ -23,12 +23,13 @@ Além dos requisitos obrigatórios, este projeto conta com:
 - ✅ **Controller Pattern** separando regras de negócio da camada de UI.
 - ✅ **Arquitetura Documentada** com diagramas e fluxos.
 - ✅ **UX Moderna** utilizando `Sonner` para feedback visual e modais organizados.
+- ✅ **Testes Unitários** configurados no Front-end com `Vitest` e `React Testing Library`, cobrindo renderização visual e comportamento de eventos dos componentes isolados.
 
 ---
 
 # 🛠 Tecnologias Utilizadas
 
-## Front-end
+## 🎨 Front-end
 
 - React + TypeScript (Vite)
 - Tailwind CSS
@@ -39,7 +40,7 @@ Além dos requisitos obrigatórios, este projeto conta com:
 
 ---
 
-## Back-end
+## ⚙️ Back-end
 
 - Node.js
 - Express
@@ -151,9 +152,11 @@ A escolha do Prisma como ORM garantiu total type-safety na comunicação com o P
 
 ---
 
-## ⚙️ Variáveis de Ambiente Necessárias
+# ⚙️ Variáveis de Ambiente Necessárias
 
-O projeto foi configurado para exigir o mínimo de configuração manual possível. Na raiz da pasta do Back-end (`api/`), você encontrará um arquivo chamado `.env-example`. 
+O projeto foi configurado para exigir o mínimo de configuração manual possível.
+
+Na raiz da pasta do Back-end (`api/`), você encontrará um arquivo chamado `.env-example`.
 
 Renomeie-o ou copie-o para `.env` e ajuste apenas as credenciais do seu banco de dados:
 
@@ -162,8 +165,9 @@ Renomeie-o ou copie-o para `.env` e ajuste apenas as credenciais do seu banco de
 # Substitua USER, PASSWORD e DATABASE_NAME pelos dados do seu ambiente local
 DATABASE_URL="postgresql://USER:PASSWORD@localhost:5432/ottolog_db?schema=public"
 
-# Chave secreta para assinatura dos tokens JWT (pode ser mantida para testes locais)
+# Chave secreta para assinatura dos tokens JWT
 JWT_SECRET="diretriz_secreta_para_teste_local"
+```
 
 ---
 
@@ -176,7 +180,7 @@ JWT_SECRET="diretriz_secreta_para_teste_local"
 
 ---
 
-# ▶️ Rodando o Back-end
+## ▶️ Rodando o Back-end
 
 ```bash
 # Entre na pasta da API
@@ -194,7 +198,7 @@ npm run dev
 
 ---
 
-# ▶️ Rodando o Front-end
+## ▶️ Rodando o Front-end
 
 ```bash
 # Em outro terminal
@@ -205,6 +209,20 @@ npm install
 
 # Inicie a aplicação
 npm run dev
+```
+
+---
+
+## 🧪 Rodando os Testes Unitários
+
+O Front-end possui um ambiente de testes configurado para garantir a confiabilidade dos componentes de interface.
+
+```bash
+# Entre na pasta do front-end
+cd web
+
+# Execute a suíte de testes
+npm run test
 ```
 
 ---
@@ -234,7 +252,7 @@ http://localhost:3333/docs
 
 ---
 
-# 📂 Estrutura Recomendada do Projeto
+# 📂 Estrutura do Projeto
 
 ```bash
 ottolog/
