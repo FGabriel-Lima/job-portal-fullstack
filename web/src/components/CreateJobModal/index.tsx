@@ -64,18 +64,18 @@ export function CreateJobModal({ onClose, onSuccess, jobToEdit }: CreateJobModal
   return (
     <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6" role="dialog" aria-modal="true">
       
-      <div className="bg-white rounded-xl shadow-2xl w-full max-w-3xl flex flex-col max-h-[90vh] animate-in fade-in zoom-in duration-200">
+      <div className="bg-white rounded-xl shadow-2xl w-full max-w-3xl flex flex-col max-h-[90vh]">
         
         {/* Cabeçalho Fixo */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200 sticky top-0 bg-white rounded-t-xl z-10">
-          <h2 className="text-xl font-bold text-gray-900">Criar Nova Vaga</h2>
+          <h2 className="text-xl font-bold text-gray-900">{jobToEdit ? 'Editar vaga' : 'Criar nova vaga'}</h2>
           <button onClick={onClose} className="text-gray-400 hover:text-gray-900 transition-colors p-1 rounded-full hover:bg-gray-100">
             <X size={24} />
           </button>
         </div>
 
         {/* Corpo Rolável */}
-        <div className="p-6 sm:p-8 overflow-y-auto flex-1 custom-scrollbar">
+        <div className="p-6 sm:p-8 overflow-y-auto flex-1">
           
           {error && (
             <div className="mb-6 p-3 bg-red-50 border border-red-200 text-red-600 rounded-lg text-sm font-medium">
@@ -166,7 +166,7 @@ export function CreateJobModal({ onClose, onSuccess, jobToEdit }: CreateJobModal
             {loading ? 'Salvando...' : (
               <>
                 <CheckCircle size={20} />
-                Publicar Vaga
+                {jobToEdit ? 'Salvar alterações' : 'Publicar vaga'}
               </>
             )}
           </button>

@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { isAxiosError } from 'axios';
+import { toast } from 'sonner';
 import { api } from '../services/api';
 
 export function useRegister() {
@@ -26,7 +27,7 @@ export function useRegister() {
 
     try {
       await api.post('/auth/register', { name, email, password });
-      alert('Cadastro realizado com sucesso! Redirecionando...');
+      toast.success('Conta criada. Agora é só entrar.');
       navigate('/login');
     } catch (err) {
       if (isAxiosError(err)) {

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Building, MapPin, Briefcase } from 'lucide-react';
+import { Building, MapPin, Briefcase, Wallet } from 'lucide-react';
 import { type Job } from '../../hooks/useDashboard'; // Reaproveitando a tipagem da vaga!
 
 interface JobCardProps {
@@ -12,7 +12,7 @@ export function JobCard({ job }: JobCardProps) {
       
       <div className="flex-1">
         <div className="flex items-center gap-3 mb-2">
-          <h3 className="text-lg font-bold text-gray-900 group-hover:text-orange-500 transition-colors">{job.title}</h3>
+          <h3 className="font-display text-xl font-bold text-gray-900 group-hover:text-orange-500 transition-colors">{job.title}</h3>
           <span className={`px-2.5 py-0.5 rounded-full text-xs font-bold border ${
             job.status === 'Aberta' ? 'bg-green-100 text-green-800 border-green-200' : 'bg-gray-100 text-gray-800 border-gray-200'
           }`}>
@@ -33,6 +33,12 @@ export function JobCard({ job }: JobCardProps) {
             <Briefcase size={16} />
             {job.type}
           </div>
+          {job.salary && (
+            <div className="flex items-center gap-1.5 text-gray-700 text-sm font-semibold">
+              <Wallet size={16} className="text-orange-500" />
+              {job.salary}
+            </div>
+          )}
         </div>
       </div>
 

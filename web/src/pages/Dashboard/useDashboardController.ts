@@ -28,12 +28,11 @@ export function useDashboardController() {
       setLoading(true);
       try {
         // Monta a URL de vagas com paginação (5 por página) e filtro de busca
-        let jobsUrl = `/jobs?page=${page}&limit=5&orderBy=createdAt&orderDir=desc&`;
-        if (searchTitle) jobsUrl += `title=${searchTitle}&`;
+        const jobsParams = { page, limit: 5, orderBy: 'createdAt', orderDir: 'desc', title: searchTitle || undefined };
 
         const [metricsResponse, jobsResponse] = await Promise.all([
           api.get('/jobs/dashboard/metrics'),
-          api.get(jobsUrl)
+          api.get('/jobs', { params: jobsParams })
         ]);
 
         setMetrics(metricsResponse.data);

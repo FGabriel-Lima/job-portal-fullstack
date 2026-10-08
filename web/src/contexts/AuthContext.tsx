@@ -1,6 +1,12 @@
 /* eslint-disable react-refresh/only-export-components */
-import { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
+import { createContext, useContext, useState, type ReactNode } from 'react';
 import { api } from '../services/api';
+
+// Aplica o token salvo já no carregamento do módulo, antes de qualquer tela pedir dados.
+const storagedToken = localStorage.getItem('@Ottolog:token');
+if (storagedToken) {
+  api.defaults.headers.common['Authorization'] = `Bearer ${storagedToken}`;
+}
 
 interface Admin {
   id: string;
@@ -23,12 +29,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return storagedAdmin ? JSON.parse(storagedAdmin) : null;
   });
 
-  useEffect(() => {
-    const storagedToken = localStorage.getItem('@Ottolog:token');
-    if (storagedToken) {
-      api.defaults.headers.common['Authorization'] = `Bearer ${storagedToken}`;
-    }
-  }, []);
 
   async function signIn(email: string, password: string) {
     const response = await api.post('/auth/login', { email, password });

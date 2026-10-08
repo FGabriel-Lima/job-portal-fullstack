@@ -14,6 +14,7 @@ export function useHome() {
   const [sortBy, setSortBy] = useState('recentes');
 
   const [jobs, setJobs] = useState<Job[]>([]);
+  const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
   const [trigger, setTrigger] = useState(0);
 
@@ -36,16 +37,13 @@ export function useHome() {
         }
 
         // Montando a URL completa com paginação, ordenação e filtros (limitado a 5 por página)
-        let url = `/jobs?page=${page}&limit=5&orderBy=${orderBy}&orderDir=${orderDir}&`;
-        if (searchTitle) url += `title=${searchTitle}&`;
-        if (searchDepartment) url += `department=${searchDepartment}&`;
-        if (searchLocation) url += `location=${searchLocation}&`;
-
-        const response = await api.get(url);
+        const params = { page, limit: 5, orderBy, orderDir, title: searchTitle || undefined, department: searchDepartment || undefined, location: searchLocation || undefined };
+        const response = await api.get('/jobs', { params });
         
         // Puxando os dados e os metadados da paginação
         setJobs(response.data.data);
         setTotalPages(response.data.meta.totalPages || 1);
+        setTotal(response.data.meta.total || 0);
       } catch (error) {
         console.error('Erro ao buscar vagas:', error);
       } finally {
@@ -68,6 +66,6 @@ export function useHome() {
     searchLocation, setSearchLocation,
     sortBy, setSortBy,
     page, setPage, totalPages,
-    jobs, loading, handleSearch
+    jobs, total, loading, handleSearch
   };
 }
