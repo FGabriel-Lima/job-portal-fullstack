@@ -8,7 +8,7 @@ interface ConfirmDeleteModalProps {
 export function ConfirmDeleteModal({ onClose, onConfirm }: ConfirmDeleteModalProps) {
   return (
     <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4" role="dialog" aria-modal="true">
-      <div className="bg-white rounded-xl shadow-2xl w-full max-w-md p-6 animate-in fade-in zoom-in duration-200">
+      <div className="bg-white rounded-xl shadow-2xl w-full max-w-md p-6">
         
         <div className="flex items-start gap-4 mb-2">
           <div className="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0 mt-1">

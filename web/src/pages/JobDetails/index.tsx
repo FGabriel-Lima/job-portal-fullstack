@@ -98,14 +98,21 @@ export function JobDetails() {
                 </div>
               </div>
 
-              <button 
-                onClick={() => window.open(job.applyLink, '_blank')}
-                className="w-full bg-orange-500 text-white font-bold py-3 px-4 rounded-lg hover:bg-orange-600 transition-colors shadow-sm mb-3"
-              >
-                Candidatar-se agora
-              </button>
-              
-              <p className="text-xs text-center text-gray-400 font-medium">Você será redirecionado para o formulário externo.</p>
+              {job.status === 'Aberta' ? (
+                <>
+                  <button
+                    onClick={() => window.open(job.applyLink, '_blank')}
+                    className="w-full bg-orange-500 text-white font-bold py-3 px-4 rounded-lg hover:bg-orange-600 transition-colors shadow-sm mb-3"
+                  >
+                    Candidatar-se agora
+                  </button>
+                  <p className="text-xs text-center text-gray-400 font-medium">Você será redirecionado para o formulário externo.</p>
+                </>
+              ) : (
+                <p className="w-full rounded-lg bg-gray-100 py-3 px-4 text-center text-sm font-semibold text-gray-500">
+                  Esta vaga foi encerrada e não recebe mais candidaturas.
+                </p>
+              )}
             </div>
           </div>
 

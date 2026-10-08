@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { toast } from 'sonner';
 import { api } from '../services/api';
 import { type Job } from './useDashboard';
 
@@ -17,7 +18,7 @@ export function useJobDetails() {
         setJob(response.data);
       } catch (error) {
         console.error('Erro ao buscar detalhes da vaga:', error);
-        alert('Vaga não encontrada!');
+        toast.error('Essa vaga não existe mais. Veja as outras vagas abertas.');
         navigate('/'); 
       } finally {
         setLoading(false);

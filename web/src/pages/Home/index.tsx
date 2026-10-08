@@ -4,6 +4,39 @@ import { PublicFooter } from '../../components/PublicFooter';
 import { JobCard } from '../../components/JobCard';
 import { useHome } from '../../hooks/useHome';
 
+// Traçado de rota de entrega cruzando o topo, com pinos nas cidades onde há vagas.
+function RouteLine() {
+  const stops = [
+    { x: 150, y: 290, label: 'Quixadá' },
+    { x: 270, y: 110, label: 'Fortaleza' },
+    { x: 1060, y: 210, label: 'Remoto' },
+  ];
+  return (
+    <svg
+      viewBox="0 0 1200 360"
+      preserveAspectRatio="xMidYMid slice"
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-0 h-full w-full"
+    >
+      {[
+        'M-20 340 C 60 330, 110 310, 150 290 S 240 160, 270 110 S 310 20, 330 -20',
+        'M1230 30 C 1160 70, 1100 140, 1060 210 S 990 320, 960 400',
+      ].map((d) => (
+        <path key={d} d={d} fill="none" stroke="#fb923c" strokeOpacity="0.45" strokeWidth="2.5" strokeDasharray="10 10" />
+      ))}
+      {stops.map((s) => (
+        <g key={s.label} transform={`translate(${s.x} ${s.y})`}>
+          <circle r="16" fill="#fb923c" fillOpacity="0.15" />
+          <circle r="6" fill="#fb923c" />
+          <text y="-24" textAnchor="middle" fill="#bfdbfe" fillOpacity="0.7" fontSize="13" fontWeight="600" fontFamily="Barlow, sans-serif" letterSpacing="2">
+            {s.label.toUpperCase()}
+          </text>
+        </g>
+      ))}
+    </svg>
+  );
+}
+
 export function Home() {
   const {
     searchTitle, setSearchTitle,
@@ -11,7 +44,7 @@ export function Home() {
     searchLocation, setSearchLocation,
     sortBy, setSortBy,          
     page, setPage, totalPages,  
-    jobs, loading, handleSearch
+    jobs, total, loading, handleSearch
   } = useHome();
 
   return (
@@ -23,18 +56,28 @@ export function Home() {
       <main className="flex-grow">
         
         {/* HERO SECTION E FILTROS */}
-        <section className="relative bg-blue-900 pt-24 pb-32 md:pb-40 border-b border-gray-200">
-          <div className="absolute inset-0 opacity-[0.05] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, #ffffff 1px, transparent 0)', backgroundSize: '32px 32px' }}></div>
-          
+        <section className="relative bg-blue-900 pt-16 pb-10 md:pt-20 md:pb-40">
+          <div className="absolute inset-0 hidden overflow-hidden md:block">
+            <RouteLine />
+          </div>
+
           <div className="relative max-w-7xl mx-auto px-6 text-center z-10">
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">Junte-se ao time Ottolog</h1>
-            <p className="text-lg text-blue-200 max-w-2xl mx-auto">
-              Inovando o futuro da logística com tecnologia de ponta. Descubra oportunidades para moldar a próxima geração de soluções corporativas.
+            <p className="font-display text-sm font-semibold uppercase tracking-[0.2em] text-orange-400">Trabalhe conosco</p>
+            <h1 className="mt-4 font-display text-5xl md:text-7xl font-bold text-white tracking-tight">Junte-se ao time Ottolog</h1>
+            <p className="mt-6 text-lg text-blue-100 max-w-2xl mx-auto">
+              Somos uma transportadora do Ceará que usa tecnologia para entregar no prazo. Temos vagas em operações,
+              tecnologia e administrativo, presenciais e remotas.
             </p>
+            {total > 0 && (
+              <p className="mt-8 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-sm font-semibold text-white ring-1 ring-white/20">
+                <span className="h-2 w-2 rounded-full bg-orange-400" />
+                {total} {total === 1 ? 'vaga publicada' : 'vagas publicadas'}
+              </p>
+            )}
           </div>
 
           {/* BARRA DE PESQUISA */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 -bottom-16 w-full max-w-4xl px-6 z-20">
+          <div className="relative z-20 mx-auto mt-10 w-full max-w-4xl px-6 md:absolute md:left-1/2 md:-bottom-16 md:mt-0 md:-translate-x-1/2">
             <form onSubmit={handleSearch} className="bg-white rounded-xl shadow-lg p-4 flex flex-col md:flex-row items-stretch gap-4 border border-gray-200">
               
               <div className="flex-1 relative">
@@ -91,23 +134,23 @@ export function Home() {
         <section className="max-w-4xl mx-auto px-6 py-24 mt-8">
           
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
-            <h2 className="text-2xl font-bold text-gray-900">
-              {jobs.length > 0 ? 'Vagas Abertas' : 'Nenhuma vaga encontrada'}
+            <h2 className="font-display text-3xl font-bold text-gray-900">
+              {!loading && jobs.length === 0 ? 'Nenhuma vaga com esses filtros' : 'Vagas'}
             </h2>
-            
-            {/* Seletor de Ordenação */}
-            {jobs.length > 0 && (
-              <select 
+
+            <label className="flex items-center gap-2 text-sm text-gray-500">
+              Ordenar por
+              <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="bg-white border border-gray-200 text-gray-700 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block px-4 py-2 outline-none shadow-sm cursor-pointer"
+                className="bg-white border border-gray-200 text-gray-700 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 px-3 py-2 outline-none shadow-sm cursor-pointer"
               >
                 <option value="recentes">Mais recentes</option>
-                <option value="titulo">Ordem Alfabética</option>
-                <option value="departamento">Por Departamento</option>
-                <option value="status">Por Status da Vaga</option>
+                <option value="titulo">Ordem alfabética</option>
+                <option value="departamento">Departamento</option>
+                <option value="status">Status da vaga</option>
               </select>
-            )}
+            </label>
           </div>
 
           {/* Cards das Vagas */}
